@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sistema de Votacao</title>
+    <link href="styles/elements.css" rel="stylesheet">
+    <script src="scripts/my_js.js"></script>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+    <script language="javascript" type="text/javascript">
+      $(function () {
+      $("#fileupload").change(function () {
+        $("#dvPreview").html("");
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+        if (regex.test($(this).val().toLowerCase())) {
+            if ($.browser.msie && parseFloat(jQuery.browser.version) <= 9.0) {
+                $("#dvPreview").show();
+                $("#dvPreview")[0].filters.item("DXImageTransform.Microsoft.AlphaImageLoader").src = $(this).val();
+            }
+            else {
+                if (typeof (FileReader) != "undefined") {
+                    $("#dvPreview").show();
+                    $("#dvPreview").append("<img />");
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $("#dvPreview img").attr("src", e.target.result);
+                    }
+                    reader.readAsDataURL($(this)[0].files[0]);
+                } else {
+                    alert("This browser does not support FileReader.");
+                }
+            }
+        } else {
+            alert("Please upload a valid image file.");
+        }
+      });
+      });
+    </script>
+    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#form').submit(function(){
+          var $this = $( this );
+
+          var tr = '<tr>'+
+            '<td>'+$this.find("input[name='titulo']").val()+'</td>'+
+            '<td>'+$this.find("input[name='area']").val()+'</td>'+
+            '<td>'+$this.find("input[name='descricao']").val()+'</td>'+
+            '</tr>'
+          $('#grid').find('tbody').append( tr );
+          //$('#abc').style.display = "none";
+          
+          return false;
+        });
+      });
+    </script>
+      
+  </head>
+
+  <body id = "" style = "">
+    
+    <div id = "top_div">
+      <h2>Projectos</h2>
+      <hr>
+      <input id = "search_input" name="" placeholder = "" type="text" /><br><br>
+    </div>
+    
+    <div id = "b_top_div">
+      <input id = "b_list" type="submit" name = "tabela" value="Tabela" />
+      <input id = "b_list" type="submit" name = "grid" value="Grid" />
+    </div>
+    
+    <div id = "left_div" >
+      <button id = "b_popup" onclick = "div_show()" >+projecto</button>
+    </div>
+    
+    <div id = "right_div">
+        <table id = "grid">
+          <thead>
+              <tr>
+                <th>Designa&ccedil;&atilde;o</th>
+                <th>Descri&ccedil;&atilde;o</th>
+                <th>Projetistas</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+       
+    <div id = "abc">
+      <div id = "popupContact">
+        <form action = "" id = "form" method = "post" name = "form">
+          <img id = "close" src = "/image/3.png" onclick = "div_hide()">
+          <h2>Cadastro de Projecto</h2>
+          
+            T&iacute;tulo:
+            <input id = "titulo" name="titulo" placeholder = "" type="text" /><br>
+          
+            Area de Aplica&ccedil;&atilde;o:
+            <input id = "" name="area" placeholder = "" type="text" /><br>
+
+            Descri&ccedil;&atilde;o:
+            <input id = "" name="descricao" placeholder = "" type="text" /><br>
+
+            Tutor:
+            <input id = "" name="tutor" placeholder = "" type="text" /><br>
+
+            Imagem:
+            <div class="img" id = "dvPreview">
+                <img src="" alt="Imagem" >
+            </div><br>
+
+            <input id="fileupload" type="file" /><br>
+
+            <div id = "d_button" >
+              <input id="b_registar" type="submit" name="registar" value="Registar" />
+              <button id="b_cancelar" onclick = "">Cancelar</button>
+            </div>          
+        </form>
+      </div>
+    </div>
+    
+  </body>
+</html>
