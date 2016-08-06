@@ -6,7 +6,14 @@
 }
 
 body {
-  padding: 0;
+  padding: 0 !important;
+}
+
+#erro-login {
+  color: red;
+  text-align: center;
+  font-size: 16px;
+
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -81,3 +88,101 @@ body {
     border-bottom: 0;
   }
 }
+
+
+body{
+
+background-color: #ef9a9a !important ;
+margin: 0 auto;
+  
+padding-top: 10%;
+
+}
+
+
+
+
+#loginBox{
+  
+align-self: center;
+  
+background: transparent;
+  
+-opacity: 0.4;
+  
+margin: 0 auto;
+}
+
+
+
+
+.btn-success{
+
+  float: left;
+}
+
+div#divGeral div{
+border: 9px solid #ef9a9a;
+float:center;
+width: 2000px; 
+
+
+}
+#divPrincipal {
+margin-bottom:300px;
+position:absolute;
+margin-top:10px;
+
+}
+
+/*Imagens*/
+
+.imagem_votacao {
+    margin-top:15px;
+align-items: center;
+}
+
+.book-card:hover{
+    box-shadow: 10px 10px 10px rgba(1,1,1,.8);
+    zoom: 90%;
+}
+
+.titulo_sistema{
+    padding: 5px;
+    background-color:pink;
+    border: 3px solid;
+    margin-bottom: 20px;
+    color: blue;
+    margin-top: 20px;
+    height: 75px;
+  width:70%;
+  
+
+}
+
+.btn{
+    border-radius: 10px;
+    margin-top:10px;
+  width:250px
+  !important;
+  
+}
+
+.container {
+  border: 1px solid red;
+}
+/*imagens*/
+
+.center {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.right {
+    position: absolute;
+    right: 0px;
+    width: 300px;
+    margin-bottom: 100px;
+}
+
