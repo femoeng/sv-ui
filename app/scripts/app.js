@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'base64'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -23,21 +24,47 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/auth/logout', {
+        templateUrl: 'views/logout.html',
+        controller: 'LogoutCtrl'
       })
-      .when('/login', {
-        templateUrl: 'views/login.html',
+      .when('/auth/login', {
+        templateUrl: 'views/auth/login.html',
         controller: 'LoginCtrl'
       })
       .when('/inicio', {
         templateUrl: 'views/inicio.html',
         controller: 'InicioCtrl'
       })
-      .when('/admin/estatisticas', {
-        templateUrl: 'views/admin/estatisticas.html',
-        controller: 'AdminEstatisticasCtrl'
+      .when('/visitor', {
+        templateUrl: 'views/visitor.html',
+        controller: 'VisitorCtrl',
+        controllerAs: 'visitor'
+      })
+      .when('/visitor/vote', {
+        templateUrl: 'views/visitor/vote.html',
+        controller: 'VisitorVoteCtrl',
+        controllerAs: 'visitor/vote'
+      })
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl',
+        controllerAs: 'admin'
+      })
+      .when('/admin/hr', {
+        templateUrl: 'views/admin/hr.html',
+        controller: 'AdminHrCtrl',
+        controllerAs: 'admin/hr'
+      })
+      .when('/admin/projects', {
+        templateUrl: 'views/admin/projects.html',
+        controller: 'AdminProjectsCtrl',
+        controllerAs: 'admin/projects'
+      })
+      .when('/admin/statistics', {
+        templateUrl: 'views/admin/statistics.html',
+        controller: 'AdminStatisticsCtrl',
+        controllerAs: 'admin/statistics'
       })
       .otherwise({
         redirectTo: '/'

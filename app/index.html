@@ -24,7 +24,7 @@
 
     <!-- Add your site or application content here -->
     <div class="">
-    <div ng-view=""></div>
+      <div ng-view=""></div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -48,7 +48,7 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <script src="bower_components/angular-base64/angular-base64.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -60,23 +60,18 @@
         <script src="scripts/services/login.js"></script>
         <script src="scripts/controllers/inicio.js"></script>
         <script src="scripts/controllers/admin/estatisticas.js"></script>
+        <script src="scripts/controllers/auth/login.js"></script>
+        <script src="scripts/controllers/auth/logout.js"></script>
+        <script src="scripts/controllers/visitor.js"></script>
+        <script src="scripts/controllers/visitor/vote.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
+        <script src="scripts/controllers/admin/hr.js"></script>
+        <script src="scripts/controllers/admin/projects.js"></script>
+        <script src="scripts/controllers/admin/statistics.js"></script>
+        <script src="scripts/services/authservice.js"></script>
+        <script src="scripts/services/visitorservice.js"></script>
+        <script src="scripts/services/adminservice.js"></script>
         <!-- endbuild -->
-        
-      <div class="container">
-        <header>
-           <h1>Sistema de Votacao</h1>
-        </header>
-          
-        <nav>
-          
-          <a href="teste.html">
-            <img src="pic_mountain.jpg" alt="Mountain View" style="width:304px;height:228px;">
-          </a>
-        </nav>
-
-        <footer>Copyright © moiane</footer>
-
-      </div>
-
+    
   </body>
 </html>
