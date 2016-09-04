@@ -1,0 +1,217 @@
+body{
+/*	background-image: url("/image/1.png");
+	background-repeat: no-repeat;*/
+}
+#div_projectista, #abc , #div_tutor, #div_visitante{
+	width:100%;
+	height:100%;
+	opacity:.95;
+	top:0;
+	left:0;
+	display:none;
+	position:fixed;
+	background-color:#313131;
+	overflow:auto
+}
+#close {
+	position:absolute;
+	right:-14px;
+	top:-14px;
+	cursor:pointer
+}
+#popupContact {
+	position:absolute;
+	left:45%;
+	top:17%;
+	margin-left:-202px;
+	font-family:'Raleway',sans-serif
+}
+form {
+	background-color:#fff;
+	border:2px solid gray;
+	border-radius:10px;
+	display: table;
+    font-family:raleway;
+	height: 410px;
+	max-width:700px;
+	min-width:500px;
+	padding:10px 50px;
+	text-align: right;
+}
+h2 {
+	padding:20px 35px;
+	margin:-10px -50px;
+	text-align:center;
+	border-radius:10px 10px 0 0
+}
+hr {
+	align: center;
+	border-top:2px solid red;
+	width: 30%;
+}
+select {
+	width:56%;
+	border: 2px solid gray;
+    border-radius: 8px;
+    font-size:16px;
+	font-family:raleway;
+	margin-top: 10px;
+	padding-left:25px;
+	background-color: white;
+}
+input[type=text] {
+	width:50%;
+	border: 2px solid gray;
+    border-radius: 8px;
+    font-size:16px;
+	font-family:raleway;
+	margin-top: 10px;
+	padding-left:25px;
+}
+input[type=submit]{
+	text-decoration:none;
+	margin-top:10px;
+	text-align:center;
+	border: 2px solid white;
+    font-size:20px;
+	cursor:pointer;
+	background-color: #A9A9A9;
+}
+input[type=submit]:disabled {
+    background: white;
+    color: black;
+}
+#div_project{
+	margin: auto;
+    width: 80%;
+}
+#div_preview{
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);
+    height: 150px;
+    width: 275px;
+    display: block;
+}
+.img {
+    margin-top: 10px;
+    border: 2px solid gray;
+    border-radius: 8px;
+    float: right;
+}
+.img img {
+    width: 100%;
+    height: 100%;
+}
+#fileupload{
+	margin-top:10px;
+	border-radius: 8px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+#div_right {
+	top: 45%;
+	margin-top: 20px;
+	margin-left: 250px;
+	margin-right: 200px;
+	font-family:'Raleway', sans-serif;
+    padding: 1em;
+    height: 260px;
+   	overflow-y: scroll;
+    display:block;
+}
+#div_grid{
+	top: 45%;
+	margin-top: 20px;
+	margin-left: 250px;
+	margin-right: 200px;
+	font-family:'Raleway', sans-serif;
+    padding: 1em;
+    height: 260px;
+    overflow-y: scroll;
+    display:none;
+}
+#div_top{
+    padding: 1em;
+    clear: left;
+    text-align: center;
+}
+#b_top_div {
+    padding: 1em;
+    clear: left;
+    text-align: center;
+}
+#div_left {
+	width: 200px;
+    margin-top: 20px;
+    float: left;
+    padding: 1em;
+}
+#div_search{
+	margin-bottom: 40px;
+    width: 100%;
+}
+#input_search, #b_search {
+	float: right;
+	top: 0;
+	border: 2px solid #ccc;
+/*	border-radius: 0px; */
+	background-color: white;
+}
+#input_search{
+	width: 180px;
+    font-size: 16px;
+}
+#input_search:focus {
+    width: 185px;
+}
+#b_list {
+	background-color: gray;
+	width:17%;
+}
+ul { 
+  list-style-type:none;
+}
+ul li {
+/*  background-image: url("/images/ceta_grid.png");
+  height:24px;*/
+}
+#b_grid, #b_table{
+	-webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    width:15%;
+    border: 2px solid black;
+    margin:0;
+}
+#b_table{
+	border-radius: 15px  0px 0px 15px;
+}
+#b_grid{
+	border-radius: 0px 15px 15px 0px;
+}
+#b_grid:hover, #b_table:hover {
+    border: 2px solid;
+}
+#b_projectista:hover, #b_tutor:hover, #b_visitante:hover, #b_grid:hover, #b_popup:hover, #b_registar:hover, #b_cancelar:hover, #b_table:hover{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#b_cancelar, #b_registar {
+	width:47%;
+	border-radius: 8px;	
+}
+#b_registar {
+	background-color:blue;
+}
+#b_cancelar {
+	background-color:red;
+}
+#b_popup , #b_projectista, #b_tutor, #b_visitante{
+	background-color:  #D3D3D3;
+	width:100%;	
+	border-radius: 8px;	
+}
