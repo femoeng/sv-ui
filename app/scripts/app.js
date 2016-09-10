@@ -16,12 +16,12 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'base64'
+    'base64',
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
+        templateUrl: 'views/inicio.html',
         controller: 'MainCtrl'
       })
       .when('/auth/logout', {
