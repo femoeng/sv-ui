@@ -1,61 +1,68 @@
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<a class="navbar-brand">Estatísticas</a>
-		</div>
-		<div class="collapse navbar-collapse" style="float: right;">
-			<form class="navbar-form navbar-left">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Busca ráida">
-				</div>
-			</form>
-		</div>
-	</div>
+<link href="styles/elements2.css" rel="stylesheet">
+
+<nav class="navbar navbar-inverse navbar-fixed-top"> 
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">FEMOENG</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href="#">Login</a></li>
+      </ul>
+     
+    </div>
+  </div>
 </nav>
 
-<span style="color: #777; font-size: 26px;">Forma1: Bolo</span>
-<hr/>
-<canvas id="chart" style="width: 1000px !important; height: 500px !important;"></canvas>
-<br/>
-<span style="color: #777; font-size: 26px;">Forma2: Barras</span>
-<hr/>
-<canvas id="chart2" style="width: 1000px !important; height: 500px !important;"></canvas>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar dentro">
+          <ul class="nav nav-sidebar" style="height:500px !important;">
+            <li class="active">
+            <li ><a href="#/admin/hr">Recursos Humanos<span class="sr-only">(current)</span></a></li>
+            <li ><a href="#/admin/projects">Projectos</a></li>
+            <li class="active"><a href="#/admin/statistics">Estatística</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9">
+          <div class="text-center">
+            <h3 class="page-header" style="padding-top: 20px;">Estatistica</h3>
+          </div>
+          <div class="row placeholders">
+            
+          </div>
+          <!-- tabela -->
+          <div id = "b_top_div">
+            <input id = "b_table" type="submit" name = "" value = "Tabela" onclick = "hideshow();" disabled/>
+            <input id = "b_grid" type="submit" name = "" value = "Grid" onclick = "hideshow();" />
+          </div>
 
-<script type="text/javascript">
-Chart.defaults.global.defaultFontSize = 22;
-var ct = $("#chart");
-var ct2 = $("#chart2");
-var newChart = new Chart(ct, {
-	type: 'pie',
-	data: {
-		labels: ["Renamo", "Frelimo", "MDN"],
-		datasets: [{
-			label: 'Votos',
-			data: [12, 19, 3],
-			backgroundColor: ['red', 'blue', 'pink']	
-		}]	
-	},
-});
+          <div class="table-responsive">
+            <div  id="b_div_tabela">
 
-var newChart2 = new Chart(ct2, {
-	type: 'bar',
-	data: {
-		labels: ["Renamo", "Frelimo", "MDN"],
-		datasets: [{
-			label: 'Votos',
-			data: [12, 19, 3],
-			backgroundColor: ['red', 'blue', 'pink']	
-		}]	
-	},
-	options: {
-		scales: {
-			yAxes: [{
-				ticks: {
-					beginAtZero: true
-				}
-			}]
-		}
-	}
+              <div class="col-sm-2" id="bts_left">
+      
+                   <input id = "b_tutor" type="submit" name = "" value = "Inovador" onclick = "alert('yaaaa');" />
+            		<input id = "b_tutor" type="submit" name = "" value = "Apresentacao" onclick = "alert('yaaaa');" />
+            		<input id = "b_tutor" type="submit" name = "" value = "I. Social" onclick = "alert('yaaaa');" />
+               </div>
 
-});
-</script>
+
+
+                <div class="col-sm-10">
+                  
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>

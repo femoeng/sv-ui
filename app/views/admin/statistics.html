@@ -1,1 +1,68 @@
-<p>This is the admin/statistics view.</p>
+<link href="styles/elements2.css" rel="stylesheet">
+
+<nav class="navbar navbar-inverse navbar-fixed-top"> 
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">FEMOENG</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href="#">Login</a></li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar" style="height:500px !important;">
+            <li class="active">
+            <li ><a href="#/admin/hr">Recursos Humanos<span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#/admin/projects">Projectos</a></li>
+            <li><a href="#/admin/statistics">Estatística</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9">
+          <div class="text-center">
+            <h3 class="page-header" style="padding-top: 20px;">Estatistica</h3>
+          </div>
+          <div class="row placeholders">
+            
+          </div>
+          <!-- tabela -->
+          <div id = "b_top_div">
+            <input id = "b_table" type="submit" name = "" value = "Tabela" onclick = "hideshow();" disabled/>
+            <input id = "b_grid" type="submit" name = "" value = "Grid" onclick = "hideshow();" />
+          </div>
+
+          <div class="table-responsive">
+            <div  id="b_div_tabela">
+
+              <div class="col-sm-2" id="bts_left">
+      
+                   <input id = "b_tutor" type="submit" name = "" value = "Inovador" onclick = "alert('yaaaa');" />
+            		<input id = "b_tutor" type="submit" name = "" value = "Apresentacao" onclick = "alert('yaaaa');" />
+            		<input id = "b_tutor" type="submit" name = "" value = "I. Social" onclick = "alert('yaaaa');" />
+               </div>
+
+
+
+                <div class="col-sm-10">
+                  
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>

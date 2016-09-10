@@ -185,3 +185,7 @@ align-items: center;
     margin-bottom: 100px;
 }
 
+div[AdminProjectsCtrl]{ h2{
+    color: black;
+    
+  }}
