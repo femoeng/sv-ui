@@ -8,10 +8,8 @@
  * Controller of the svUiApp
  */
 angular.module('svUiApp')
-  .controller('AdminProjectsCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AdminProjectsCtrl', function ($scope) {
+    $scope.logout = function(){
+        alert("clicar"); 
+    }
   });
