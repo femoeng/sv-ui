@@ -8,10 +8,11 @@
  * Controller of the svUiApp
  */
 angular.module('svUiApp')
-  .controller('AuthLogoutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('LogoutCtrl', function (AuthService, $location) {
+    AuthService.logout(function(res) {
+
+    }, function(err) {
+
+    });
+    $location.path("/auth/login");
   });

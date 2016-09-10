@@ -17,6 +17,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'base64',
+    'angular-loading-bar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
