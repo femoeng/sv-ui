@@ -8,13 +8,13 @@
  * Controller of the svUiApp
  */
 angular.module('svUiApp')
-  .controller('InicioCtrl', function ($scope, $location) {
+  .controller('InicioCtrl', function ($scope, $location, $mdSidenav) {
     
   	$scope.username = "densquejamal@gmail.com";
   	
     $scope.redireccionar = function() {
     	$location.path("/admin/estatisticas");
-    }
+    } 
 
 
   });
