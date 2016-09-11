@@ -1,9 +1,11 @@
 .navbar {
   background-color: #375A38 !important;
+  background: url(/images/sistemadevotacaocima.png);
 }
 
 .nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
-  background-color: #D3E0CE !important;
+  /*background-color: #D3E0CE !important;*/
+  background-color: white;
 }
 /*
  * Base structure
@@ -51,7 +53,8 @@ body {
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
+    background-color: #375A38;
+
     border-right: 1px solid #eee;
   }
 }
@@ -109,4 +112,8 @@ body {
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
+}
+
+.dentro{
+  position: fixed;
 }

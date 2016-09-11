@@ -8,19 +8,26 @@
  * Controller of the svUiApp
  */
 angular.module('svUiApp')
-  .controller('LoginCtrl', function ($scope, $location, AuthService) {
+  .controller('LoginCtrl', function ($scope, $location, AuthService, cfpLoadingBar) {
     $scope.erroLogin = false;
     console.log("No controladorr");
     $scope.login = function(username, password) {
-    	alert("Clicado");
-    	var credenciais = {
+    	cfpLoadingBar.start();
+        $scope.erroLogin = false;
+        var credenciais = {
     		username: username, 
     		password: password
     	}
     	AuthService.login(credenciais,function(res){
-    		console.log(res);
+    		var token = res.token;
+            localStorage['sv.token'] = token;
+            $location.path('/admin/projects');
+            cfpLoadingBar.complete();
     	}, function(err){
     		console.log(err);
-    	}); 
+            cfpLoadingBar.complete();
+            $scope.erroLogin = true;
+    	});
     }
+    
   });
