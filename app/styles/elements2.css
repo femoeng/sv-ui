@@ -174,4 +174,18 @@ ul li {
 	width: 33%;
 }
 
+#imgPreview{
+	height: 250px;
+	width: 450px;
+}
 
+#div> #inputPic{
+	text-align: right;
+}
+.modal-dialog {
+	width: 800px;
+}
+
+.modal-body {
+	padding: 50px;
+}
