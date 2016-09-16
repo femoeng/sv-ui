@@ -34,19 +34,19 @@ angular.module('svUiApp')
     $http.put(apiUrl+'/departamentos/'+departamento.id, post, configuracoes).success(sucesso).error(erro);
   }
 
-
-
   this.createCurso = function(curso, sucesso, erro){
     var token = localStorage['sv.token'];
     var post = JSON.stringify(curso);
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.post(apiUrl+'/cursos'+token, post, configuracoes).success(sucesso).error(erro);
   }
+
   this.removeCurso = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.delete(apiUrl+'/cursos'+id).success(sucesso).error(erro);  
   }
+
   this.updateCurso = function(curso, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
@@ -57,20 +57,18 @@ angular.module('svUiApp')
     $http.put(apiUrl+'/cursos/'+curso.id, post, configuracoes).success(sucesso).error(erro);
   }
 
-
-
   this.createVisitante = function(visitante, sucesso, erro){
     var token = localStorage['sv.token'];
     var post = JSON.stringify(visitante);
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.post(apiUrl+'/visitantes'+token, post, configuracoes).success(sucesso).error(erro);
   }
+
   this.removeVisitante = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.delete(apiUrl+'/visitantes'+id).success(sucesso).error(erro);  
   }
-
     
   this.createProjectista = function(projectista, sucesso, erro){
     var token = localStorage['sv.token'];
@@ -78,6 +76,7 @@ angular.module('svUiApp')
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.post(apiUrl+'/projectistas'+token, post, configuracoes).success(sucesso).error(erro);
   }
+  
   this.removeProjectista = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
