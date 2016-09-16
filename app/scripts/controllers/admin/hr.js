@@ -8,10 +8,10 @@
  * Controller of the svUiApp
  */
 angular.module('svUiApp')
-  .controller('AdminHrCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AdminHrCtrl', function ($scope, AdminService) {
+  	$scope.createVisitor = function(visitor){
+  		console.log(visitor);
+  		console.log("Aqui ");
+  		AdminService.createVisitante(visitor,function(res){console.log(res)},function(err){console.log(err)});
+  	}
   });
