@@ -194,3 +194,10 @@ div[AdminProjectsCtrl]{ h2{
     color: black;
     
   }}
+
+.btn-selecionar {
+  background-color: red !important;
+}
+.btn-selecionado {
+  background-color: #D3D3D3 !important;
+}
