@@ -54,6 +54,11 @@ angular.module('svUiApp')
     post = JSON.stringify(post);
     $http.put(apiUrl+'/cursos/'+curso.id, post, configuracoes).success(sucesso).error(erro);
   }
+  this.getDepartamentos = function(sucesso,erro){
+    var token = localStorage['sv.token'];
+    $http.defaults.headers.common['Authorization'] = 'Token '+token;
+    $http.get(apiUrl+'/departamentos').success(sucesso).error(erro);  
+  }
 
   this.createVisitante = function(visitante, sucesso, erro){
     var token = localStorage['sv.token'];
@@ -67,13 +72,12 @@ angular.module('svUiApp')
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.get(apiUrl+'/visitantes').success(sucesso).error(erro);  
   }
-
   this.removeVisitante = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.delete(apiUrl+'/visitantes'+id).success(sucesso).error(erro);  
   }
-    
+  
   this.createProjectista = function(projectista, sucesso, erro){
     var token = localStorage['sv.token'];
     var post = JSON.stringify(projectista);
@@ -85,6 +89,10 @@ angular.module('svUiApp')
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.delete(apiUrl+'/projectistas'+id).success(sucesso).error(erro);
   }
-
+  this.getProjectistas = function(sucesso,erro){
+    var token = localStorage['sv.token'];
+    $http.defaults.headers.common['Authorization'] = 'Token '+token;
+    $http.get(apiUrl+'/projectistas').success(sucesso).error(erro);  
+  }
 
 });
