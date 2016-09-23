@@ -67,6 +67,18 @@ angular
         controller: 'AdminStatisticsCtrl',
         controllerAs: 'admin/statistics'
       })
+      .when('/admin/hr/projectistas', {
+        templateUrl: 'views/admin/hr/projectistas.html',
+        controller: 'AdminHrProjectistasCtrl'
+      })
+      .when('/admin/hr/visitors', {
+        templateUrl: 'views/admin/hr/visitors.html',
+        controller: 'AdminHrVisitorsCtrl'
+      })
+      .when('/admin/hr/users', {
+        templateUrl: 'views/admin/hr/users.html',
+        controller: 'AdminHrUsersCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,3 +1,20 @@
+.header-fix > thead> tr >th {
+color: white;
+background-color: red;
+/*width: 33%;*/
+}
+
+.inter-menu-sidebar > li > a{
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.inter-menu-sidebar>li:hover{
+  color: #fff;
+  background-color: #eee;
+}
 
 .vote-btn :hover{
   cursor: pointer;
@@ -194,3 +211,10 @@ div[AdminProjectsCtrl]{ h2{
     color: black;
     
   }}
+
+.btn-selecionar {
+  background-color: red !important;
+}
+.btn-selecionado {
+  background-color: #D3D3D3 !important;
+}

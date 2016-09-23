@@ -1,0 +1,159 @@
+<link href="styles/elements2.css" rel="stylesheet">
+
+<nav class="navbar navbar-inverse navbar-fixed-top"> 
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">FEMOENG</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a href="#">Login</a></li>
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar dentro">
+          <ul class="nav nav-sidebar" style="height:500px !important;">
+            <li class="active"><a href="#/admin/hr">
+              Recursos Humanos
+              <span class="sr-only">(current)</span></a></li>
+              <ul class="inter-menu-sidebar">
+                <li>
+                  <a href="#/admin/hr/users" style="color: #eeeab7 !important;">Utilizadores</a>
+                </li>
+                <li>
+                  <a href="#/admin/hr/visitors">Visitantes</a>
+                </li>
+                <li>
+                <a href="#/admin/hr/projectistas">Projectistas</a>
+                </li>
+              </ul>
+            <li>
+              <a href="#/admin/projects">Projectos</a>
+            </li>
+            <li><a href="#/admin/statistics">Estatística</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-sm-9">
+          <div class="text-center">
+          <h3 class="page-header" style="padding-top: 20px;">Recursos Humanos - Utilizadores</h3>
+          </div>
+          <div class="row placeholders">
+            
+          </div>
+          <!-- tabela -->
+          <div id = "b_top_div">
+            <input id = "b_table" type="submit" name = "" value = "Tabela" onclick = "hideshow();" disabled/>
+            <input id = "b_grid" type="submit" name = "" value = "Grid" onclick = "hideshow();" />
+          </div>
+
+          <div class="table-responsive">
+            <div  id="b_div_tabela">
+
+              <div class="col-sm-2" id="bts_left">
+      
+                   <input id = "b_projectista" type="submit" class = "btn_selecionado" name = "" value = "+Projectista" ng-click = "btnSelecionar('b_projectista')" />
+              
+               </div>
+
+
+
+                <div class="col-sm-10">
+                  <table id ="grid"class="table table-striped header-fixed">
+                       <thead class="text-center">
+                          <tr class="text-center">
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Contacto</th>
+                            <th>Tipo</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="visitante in visitantes">
+                            <td></td>
+                            <td>{{visitante.nome}}</td>
+                            <td>{{visitante.email}}</td>
+                            <td>{{visitante.contacto}}</td>
+                          </tr>
+                          
+                        </tbody>
+                  </table>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+<div class="modal fade mdlformula" id="tutorModal" tabindex="-1" role="dialog" aria-labelledby="tutorModalLabel">
+        <div class="modal-dialog" role="document"> 
+        <div class="modal-content">
+        <form action = "" class="form-horizontal" id = "form_p" method = "" name = "form_p">
+          <div class="modal-header text-center">
+          
+          <h2>Cadastro de Tutor</h2>
+          </div>
+          <div class="modal-body">
+          <div class="form-group">
+            <label for="inputNome" class="col-sm-2 control-label">Nome:</label>
+            <div class="col-sm-10">
+            <input id = "inputNome" name="" class="form-control" placeholder = "" type="text" /><br>
+            </div>
+          </div>
+            
+            
+
+            
+            <div class="form-group">
+                <label for="inputContacto" class="col-sm-2 control-label">Contacto:</label>
+              <div class="col-sm-10">
+                <input id = "inputContacto" class="form-control" name="" placeholder = "" type="text" /><br>
+              </div>
+            </div>
+            
+            <div class="form-group">
+               <label for="inputEmail" class="col-sm-2 control-label"> Email:</label>
+            <div class="col-sm-10">
+              <input id = "inputEmail" class="form-control" name="" placeholder = "" type="text" /><br>
+            </div>
+            
+            </div>
+
+             <div class="form-group">
+              <label for="sltProjecto" class="col-sm-2 control-label"> Projecto:</label>
+                <div class="col-sm-10">
+                  <select id = "sltProjecto" class="form-control">
+                    <option value="Estudante">Agua quente</option>
+                  </select>
+                </div>
+            </div>
+
+            </div>
+                             
+
+            <div class="modal-footer">
+              <input id="b_registar" type="submit" name = "" value="Registar" onclick = "" />
+              <input id="b_cancelar" type="submit" name = "" value="Cancelar" onclick = "" />
+            </div>          
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+
+      });
+    </script>>
