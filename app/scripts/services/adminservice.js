@@ -78,7 +78,7 @@ angular.module('svUiApp')
   this.removeVisitante = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
-    $http.delete(apiUrl+'/visitantes'+id).success(sucesso).error(erro);  
+    $http.delete(apiUrl+'/visitantes/'+id).success(sucesso).error(erro);  
   }
   
   this.createProjectista = function(projectista, sucesso, erro){
@@ -91,7 +91,7 @@ angular.module('svUiApp')
   this.removeProjectista = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
-    $http.delete(apiUrl+'/projectistas'+id).success(sucesso).error(erro);
+    $http.delete(apiUrl+'/projectistas/'+id).success(sucesso).error(erro);
   }
   this.getProjectistas = function(sucesso,erro){
     var token = localStorage['sv.token'];

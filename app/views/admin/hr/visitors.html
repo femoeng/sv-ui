@@ -62,11 +62,11 @@
           <div class="table-responsive">
             <div  id="b_div_tabela">
 
-              <div class="col-sm-2" id="bts_left" style="margin-top: 10px !important;">
+              <div class="col-sm-2" id="bts_left" style="margin-top: 45px !important;">
               
                    <input id = "b_visitante" type="submit" class = "btn_selecionado" name = "" value = "+Visitante"  data-toggle="modal" data-target="#visitanteModal"/>
-                    <input id = "b_visitante" type="submit" class = "btn_selecionado" name = "" value = "+Editar"  data-toggle="" data-target="" ng-show="EditboxChecked"/>
-                    <input id = "b_visitante" type="submit" class = "btn_selecionado" name = "" value = "+Remover"  data-toggle="" data-target="" ng-show="EditboxChecked"/>
+                    <input id = "b_visitante" type="submit" class = "btn_selecionado" name = "" value = "+Editar"  data-toggle="modal" data-target="#editarVisitanteModal" ng-show="EditboxChecked"/>
+                    <input id = "b_visitante" type="submit" class = "btn_selecionado" name = "" value = "+Remover"  data-toggle="" data-target="" ng-show="EditboxChecked" ng-click="removeVisitor()"/>
                    
               
                </div>
@@ -74,7 +74,14 @@
 
 
                 <div class="col-sm-10">
-                  <table id ="grid" class="table table-striped table-fix">
+                  <div style="display:inline !important; float:right;">
+                     <span class="glyphicon glyphicon-search" style="padding-top: 20px !important;"></span>
+                  </div>
+                  <div style="padding: 10px; display:inline; float:right;" class="col-sm-5">
+                      <input type="text" class="form-control" ng-model="search.user">
+                     
+                  </div>
+                  <table id ="grid" class="table table-striped table-fix" style="max-height:600px;">
                        <thead class="text-center" style="background-color:red; color:white;">
                           <tr class="">
                             <th>#</th>
@@ -84,9 +91,9 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="visitante in visitantes">
+                          <tr ng-repeat="(key,visitante) in visitantes | startFrom:currentPage*pageSize | limitTo: pageSize | orderBy: '-id' | filter: search.user">
                             <td>
-                              <input class="visitor-checkbox" type="checkbox" ng-click="enableVisitorEdit(visitante)">
+                              <input ng-true-value="{{visitante}}" ng-false-value="0" type="checkbox" ng-model="checkbox.visitante" ng-click="enableVisitorEdit(visitante, key)">
                             </td>
                             <td>{{visitante.nome}}</td>
                             <td>{{visitante.contacto}}</td>
@@ -94,7 +101,32 @@
                           </tr>
                           
                         </tbody>
+                        <tfoot>
+                          <tr>
+                            
+                          </tr>
+                        </tfoot>
                   </table>
+                  <div>
+                    <nav aria-label="Page navigation" style="text-align:center;">
+                      <ul class="pagination">
+                        <li ng-show="numberOfPages() > 1">
+                          <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#"> {{currentPage+1}} de {{numberOfPages()}}</a>
+                        </li>
+                        
+                        <li ng-show="numberOfPages() > 1">
+                          <a href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
                 </div>
             </div>
 
@@ -114,8 +146,8 @@
           <div class="modal-body">
           <div class="form-group">
             <label for="inputNome" class="col-sm-2 control-label">Nome:</label>
-            <div class="col-sm-10">
-            <input id = "inputNome" name="" class="form-control" placeholder = "" ng-model = "visitor.nome" type="text" /><br>
+            <div class="col-sm-10"> 
+            <input id = "inputNome" name="" class="form-control" placeholder = "" ng-model = "visitor.nome" type="text"  /><br>
             </div>
           </div>
             
@@ -135,9 +167,6 @@
                 <input id = "inputNumero" ng-model = "visitor.numero_documento" class="form-control" name="" placeholder = "" type="text" /><br>
               </div>
             </div>
-            
-
-
 
             <div class="form-group">
                 <label for="inputContacto" class="col-sm-2 control-label">Contacto:</label>
@@ -173,10 +202,119 @@
     </div>
 
     </div>
-    <script type="text/javascript">
-     $(document).ready(function() {
-      $(".visitor-checkbox").change(function() {
-        alert("Changed");
-      });
-     });
-    </script>>
+
+<div class="modal fade mdlformula" id="editarVisitanteModal" tabindex="-1" role="dialog" aria-labelledby="visitanteModalLabel">
+        <div class="modal-dialog" role="document"> 
+        <div class="modal-content">
+        <form action = "" class="form-horizontal" id = "form_p" method = "" name = "form_p">
+          <div class="modal-header text-center">
+          
+          <h2>Editar Visitante</h2>
+          </div>
+          <div class="modal-body" style="width:60%; margin:auto;">
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">Nome:</label>
+              </div>
+              <div class="col-sm-6">
+                <p ng-show="!showNomeInput">{{editingVisitor.nome}}</p>
+                <input type="text" class="form-control" ng-model="editingVisitor.nome" ng-show="showNomeInput" style="height: 28px !important;">
+              </div>
+              <div class="col-sm-2">
+                <a ng-click="hideNomeInput()" ng-show="!showNomeInput">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">Contacto:</label>
+              </div>
+              <div class="col-sm-6">
+                <p>{{editingVisitor.contacto}}</p>
+                <input type="text" class="form-control" style="height: 28px !important;" ng-model="editingVisitor.contacto" ng-show="showContactoInput">
+              </div>
+              <div class="col-sm-2">
+                <a ng-click="hideContactoInput()" ng-show="!showContactoInput">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">Email:</label>
+              </div>
+              <div class="col-sm-6">
+                <p>{{editingVisitor.email}}</p>
+                <input type="text" class="form-control" style="height: 28px !important;" ng-model="editingVisitor.email" ng-show="showEmailInput">
+              </div>
+              <div class="col-sm-2">
+                <a ng-click="hideEmailInput()" ng-show="!showEmailInput">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">Tipo:</label>
+              </div>
+              <div class="col-sm-6">
+                <p>{{editingVisitor.tipo_visitante}}</p>
+                <input type="text" class="form-control" style="height: 28px !important;" ng-model="editingVisitor.tipo_visitante" ng-show="showTipoInput"> 
+              </div>
+              <div class="col-sm-2">
+                <a ng-click="hideTipoInput()" ng-show="!showTipoInput">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">TipoDoc:</label>
+              </div>
+              <div class="col-sm-6">
+                <p>{{editingVisitor.tipo_documento}}</p>
+                <input type="text" class="form-control" style="height: 28px !important;" ng-model="editingVisitor.tipo_documento" ng-show="showTipoDocInput">
+              </div>
+              <div class="col-sm-2">
+                <a ng-click="hideTipoDocInput()" ng-show="!showTipoDocInput">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">NúmDoc:</label>
+              </div>
+              <div class="col-sm-6">
+                <p>{{editingVisitor.numero_documento}}</p>
+                <input type="text" class="form-control" style="height: 28px !important;" ng-model="editingVisitor.NumDoc" ng-show="showNumDocInput">
+              </div>
+              <div class="col-sm-2">
+                <a ng-click="hideNumDocInput()" ng-show="!showNumDocInput">
+                  <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="control-label" style="float:right; padding:0px !important;">PIN:</label>
+              </div>
+              <div class="col-sm-6">
+                <p>{{editingVisitor.pin}}</p>
+                <input type="text" class="form-control" style="display:none;">
+              </div>
+              <div class="col-sm-2">
+                
+              </div>
+            </div>
+            <div class="modal-footer">
+              <input id="b_registar" name = "" type="button" value="Actualizar" ng-click = "createVisitor(visitor)" data-dismiss="modal" />
+              <input id="b_cancelar" name = "" type="button" value="Cancelar" data-dismiss="modal"/>
+            </div>          
+        </form>
+        </div>
+      </div>
+    </div>
+
+    </div>
