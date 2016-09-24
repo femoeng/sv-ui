@@ -13,6 +13,8 @@ angular.module('svUiApp')
     $scope.criteria2Selected = false;
     $scope.criteria3Selected = false;
 
+    $scope.ready2Vote = false;
+
     $scope.projectos = [];
     $scope.projectosCriterio = [];
     $scope.criterios = [];
@@ -84,6 +86,7 @@ angular.module('svUiApp')
     $scope.selecionaCriterio = function(criterioID) {
         $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
         $scope.criterios = [];
+        $scope.ready2Vote = true;
         console.log($scope.projectosCriterio);
     }
 
