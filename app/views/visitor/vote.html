@@ -14,8 +14,16 @@
   </div>
 </nav>
 <div style="padding-top: 60px;">
-	<div style="width: 600px; margin: auto;">
+	<div style="width: 900px; margin: auto;">
 		<table style="height: 400px !important; overflow-y: scroll;">
+			<thead>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
 			<tbody>
 				<tr>
 					<td></td>
@@ -23,9 +31,12 @@
 						<input type="text">
 						<span class="glyphicon glyphicon-search" style="display:inline;"></span>
 					</td>
+					<td>
+						
+					</td>
 					<td></td>
 				</tr>
-				<tr style="border: 1px solid #cacaca;">
+				<tr style="border: 1px solid #cacaca;" ng-repeat="(key,projecto) in projectosCriterio">
 					<td style="width:100px; border-right: 1px solid #cacaca;">
 						<div style="padding: 10px; vertical-align:top !important;">
 							<img src="images/project.png"  style="width: 64px; height: 64px; margin:auto;">	 
@@ -35,53 +46,31 @@
 						<div class="row">
 							<div class="col-sm-7">
 								<p><b>Projecto:</b></p>	
-								<p>Sistema de Gestão de Bolsas de Estudo.</p>
+								<p>{{projecto.projecto.titulo}}</p>
 							</div>
 							<div class="col-sm-5">
 								<p><b>Área de Aplicação:</b></p>
-								<p>Engenharia Informática</p>
+								<p>{{projecto.area_aplicacao}}</p>
 							</div>
 						</div>
 						<p><b>Descrição:</b></p>
-						<p>Este sistema visa facilitar a vida dos Estudantes de 
-						Cursos de Nível médio e superior no país.
+						<p>{{projecto.projecto.descricao}}
 						<a href="" style="display:block ;">detalhes...</a></p>
 						
 					</td>
+					<td style="width:200px; border-left: 1px solid #cacaca;">
+						<ul ng-repeat="criterio in projecto.criterios">
+							
+							<li>{{criterio.criterio.nome}}</li>
+						</ul>
+					</td>
 					<td style="width:100px; border-left: 1px solid #cacaca;">
-						<a style="padding: 20px; float: right;" class="vote-btn" data-toggle="modal" data-target="#voteModal">
+						<a style="padding: 20px; float: right;" class="vote-btn" data-toggle="modal" data-target="#voteModal" ng-click="votarProjecto(projecto, key)">
 							<img src="images/votar.svg" style="width: 64px !important; margin: auto;">
 						</a>
 					</td>
 				</tr>
-				<tr style="border: 1px solid #cacaca;">
-					<td style="width:100px; border-right: 1px solid #cacaca;">
-						<div style="padding: 10px;">
-							<img src="images/project.png"  style="width: 64px; height: 64px; margin:auto;">	 
-						</div>
-					</td>
-					<td style="width:400px; padding: 10px;">
-						<div class="row">
-							<div class="col-sm-7">
-								<p><b>Projecto:</b></p>	
-								<p>Sistema de Gestão de Bolsas de Estudo.</p>
-							</div>
-							<div class="col-sm-5">
-								<p><b>Área de Aplicação:</b></p>
-								<p>Engenharia Informática</p>
-							</div>
-						</div>
-						<p><b>Descrição:</b></p>
-						<p>Este sistema visa facilitar a vida dos Estudantes de 
-						Cursos de Nível médio e superior no país.
-						<a href="" style="display:block ;">detalhes...</a></p>
-					</td>
-					<td style="width:100px; border-left: 1px solid #cacaca;">
-						<a style="padding: 20px; float: right;" class="vote-btn" data-toggle="modal" data-target="#voteModal">
-							<img src="images/votar.svg" style="width: 64px !important; margin: auto;">
-						</a>
-					</td>
-				</tr>
+				
 			</tbody>
 			<tfoot>
 				<tr>
@@ -123,27 +112,37 @@
       </div>
       <div class="modal-body">
         <div class="row">
-        	<div class="col-sm-4">
-        		<button ng-style="firstCriteriaStyle" ng-click="firstCriteriaSelected()">
+        	<div class="col-sm-4" ng-show="!criteria1Selected">
+        		<button ng-style="firstCriteriaStyle" ng-model="criterio.criterio1" ng-click="firstCriteriaSelected({id:'mais-criativo',nome:'Mais Criativo'})">
         			<p>Mais Criativo</p>
         		</button>
         	</div>
-        	<div class="col-sm-4">
-        		<button ng-style="secondCriteriaStyle" ng-click="secondCriteriaSelected()">
+        	<div class="col-sm-4" ng-show="!criteria2Selected">
+        		<button ng-style="secondCriteriaStyle" ng-model="criterio.criterio2" ng-click="secondCriteriaSelected({id:'melhor-apresentacao',nome:'Melhor Apresentação'})">
         			<p>Melhor Apresentação</p>
         		</button>
         	</div>
-        	<div class="col-sm-4">
-        		<button ng-style="thirdCriteriaStyle" ng-click="thirdCriteriaSelected()">
+        	<div class="col-sm-4" ng-show="!criteria3Selected">
+        		<button ng-style="thirdCriteriaStyle" ng-model="criterio.criterio3" ng-click="thirdCriteriaSelected({id:'maior-impacto-social',nome:'Maior Impacto Social'})">
         			<p>Maior Impacto Social</p>
         		</button>
         	</div>
         </div>
       </div>
+      <div>
+      	<ul ng-repeat="(key,cri) in criterios">
+  			<li>
+  				{{cri.criterio.nome}}
+  				<a style="display: inline; cursor:pointer;" ng-click="unselectCriterio(key)">
+  					<span class="glyphicon glyphicon-remove"></span>
+  				</a>
+  			</li>
+  		</ul>
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" >Votar</button>
+        <button type="button" class="btn btn-default" ng-click="selecionaCriterio()" data-dismiss="modal">OK</button>
       </div>
     </div>
-
+ 
   </div>
 </div>

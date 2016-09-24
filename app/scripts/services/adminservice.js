@@ -98,5 +98,10 @@ angular.module('svUiApp')
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
     $http.get(apiUrl+'/projectistas').success(sucesso).error(erro);  
   }
+  this.getProjectos = function(sucesso,erro){
+    var token = localStorage['sv.token'];
+    $http.defaults.headers.common['Authorization'] = 'Token '+token;
+    $http.get(apiUrl+'/projectos').success(sucesso).error(erro);  
+  }
 
 });
