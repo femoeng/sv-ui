@@ -20,6 +20,13 @@ angular.module('svUiApp')
   	$http.defaults.userXDomain = true;
   	$http.post(apiUrl+'/login', cred, configuracoes).success(sucesso).error(erro);
   }
+  this.loginVisitor = function (credenciais, sucesso, erro){
+    var cred = $base64.encode(credenciais.numero_celular+':'+credenciais.pin);
+    $http.defaults.headers.common['Authorization'] = 'Basic '+cred;
+    $http.defaults.headers.common['X-Requested-With'];
+    $http.defaults.userXDomain = true;
+    $http.post(apiUrl+'/sessao', cred, configuracoes).success(sucesso).error(erro);
+  }
   this.logout = function (sucesso, erro){
   	var token = localStorage['sv.token'];
   	$http.defaults.headers.common['Authorization'] = 'Token '+token;

@@ -14,21 +14,19 @@ angular.module('svUiApp')
     
     //console.log("No controladorr");
     
-    $scope.login = function(celular, pin) {
+    $scope.login = function(visitor) {
     	cfpLoadingBar.start();
         $scope.erroLogin = false;
         
         var credenciais = {
-    		celular: celular, 
-    		pin: pin
+    		numero_celular: visitor.contacto, 
+    		pin: visitor.pin
     	}
-    	AuthService.login(credenciais,function(res){
-    		
-    		var token = res.token;
-            localStorage['sv.token'] = token;
+    	AuthService.loginVisitor(credenciais,function(res){
+            sessionStorage['sv.visitor.code'] = res.codigo;
             $location.path('/visitor/vote');
             cfpLoadingBar.complete();
-
+            console.log(res.codigo);
     	}, function(err){
     		console.log(err);
             cfpLoadingBar.complete();
