@@ -34,7 +34,9 @@
 					<td>
 						
 					</td>
-					<td></td>
+					<td>
+						<button type="button" class="btn btn-success" ng-show>Votar</button>
+					</td>
 				</tr>
 				<tr style="border: 1px solid #cacaca;" ng-repeat="(key,projecto) in projectosCriterio">
 					<td style="width:100px; border-right: 1px solid #cacaca;">
@@ -50,7 +52,7 @@
 							</div>
 							<div class="col-sm-5">
 								<p><b>Área de Aplicação:</b></p>
-								<p>{{projecto.area_aplicacao}}</p>
+								<p>{{projecto.projecto.area_aplicacao}}</p>
 							</div>
 						</div>
 						<p><b>Descrição:</b></p>

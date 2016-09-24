@@ -29,7 +29,7 @@ angular.module('svUiApp')
     $scope.newVisitor = {};
 
   	AdminService.getVisitantes(function(res){ 
-  		$scope.visitantes = res.visitante; 
+  		$scope.visitantes = res.visitantes; 
   		console.log($scope.visitantes);
       console.log($scope.numberOfPages);
   	}, function(err){ 
