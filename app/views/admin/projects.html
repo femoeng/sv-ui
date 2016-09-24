@@ -72,10 +72,10 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr ng-repeat="projectista in projectistas">
-                            <td>{{projectista.Nome}}</td>
-                            <td>{{projectista.Curso}}</td>
-                            <td>{{projectista.Projecto}}</td>
+                          <tr ng-repeat="(key,projecto) in projectos" ng-repeat="projectista in projectistas">
+                            <td>{{projecto.titulo}}</td>
+                            <td>{{projecto.area_aplicacao}}</td>
+                            <td>{{projecto.tutor}}</td>
                           </tr>
                           
                         </tbody>
