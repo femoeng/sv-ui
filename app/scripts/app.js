@@ -79,6 +79,11 @@ angular
         templateUrl: 'views/admin/hr/users.html',
         controller: 'AdminHrUsersCtrl'
       })
+      .when('/auth/visitor', {
+        templateUrl: 'views/auth/visitor.html',
+        controller: 'AuthVisitorCtrl',
+        controllerAs: 'auth/visitor'
+      })
       .otherwise({
         redirectTo: '/'
       });
