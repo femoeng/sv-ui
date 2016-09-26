@@ -15,12 +15,12 @@
 </nav>
 <div style="padding-top: 60px;">
 	<div style="width: 900px; margin: auto;">
-		<table style="height: 400px !important; overflow-y: scroll;">
+		<table style="height: 400px !important; overflow-y: scroll; margin: auto !important;">
 			<thead>
 				<tr>
 					<td></td>
 					<td></td>
-					<td></td>
+					<td ng-show = "ready2Vote"></td>
 					<td></td>
 				</tr>
 			</thead>
@@ -28,17 +28,17 @@
 				<tr>
 					<td></td>
 					<td style="padding: 30px; padding-left:"> 
-						<input type="text">
+						<input type="text" ng-model = "search.project" /> 
 						<span class="glyphicon glyphicon-search" style="display:inline;"></span>
 					</td>
-					<td>
+					<td ng-show = "ready2Vote">
 						
 					</td>
 					<td>
 						<button type="button" class="btn btn-success" ng-show="ready2Vote" style="width:100% !important;" ng-click="vote()" data-toggle="modal" data-target="#confirmVoteModal">Votar</button>
 					</td>
 				</tr>
-				<tr style="border: 1px solid #cacaca;" ng-repeat="(key,projecto) in projectosCriterio">
+				<tr style="border: 1px solid #cacaca;" ng-repeat="(key,projecto) in projectosCriterio | startFrom: currentPage*pageSize | limitTo: pageSize | filter: search.project ">
 					<td style="width:100px; border-right: 1px solid #cacaca;">
 						<div style="padding: 10px; vertical-align:top !important;">
 							<img src="images/project.png"  style="width: 64px; height: 64px; margin:auto;">	 
@@ -60,7 +60,7 @@
 						<a href="" style="display:block ;">detalhes...</a></p>
 						
 					</td>
-					<td style="width:200px; border-left: 1px solid #cacaca;">
+					<td ng-show = "ready2Vote" style="width:200px; border-left: 1px solid #cacaca;">
 						<ul ng-repeat="criterio in projecto.criterios">
 							
 							<li>{{criterio.criterio.nome}}</li>
@@ -78,30 +78,31 @@
 				<tr>
 					<td></td>
 					<td>
-						<nav aria-label="Page navigation" style="text-align:center;">
-						  <ul class="pagination">
-						    <li>
-						      <a href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						      </a>
-						    </li>
-						    <li><a href="#">1</a></li>
-						    <li><a href="#">2</a></li>
-						    <li><a href="#">3</a></li>
-						    <li><a href="#">4</a></li>
-						    <li><a href="#">5</a></li>
-						    <li>
-						      <a href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
-						    </li>
-						  </ul>
-						</nav>
 					</td>
 					<td></td>
 				</tr>
 			</tfoot>
 		</table>
+		  <div>
+	        <nav aria-label="Page navigation" style="text-align:center;">
+	          <ul class="pagination">
+	            <li ng-show="currentPage > 0">
+	              <a ng-click = "prev()" aria-label="Previous">
+	                <span aria-hidden="true">&laquo;</span>
+	              </a>
+	            </li>
+	            <li>
+	              <a href="#"> {{currentPage+1}} de {{numberOfPages()}}</a>
+	            </li>
+	            
+	            <li ng-show="showNext()">
+	              <a ng-click = "next()" aria-label="Next">
+	                <span aria-hidden="true">&raquo;</span>
+	              </a>
+	            </li>
+	          </ul>
+	        </nav>
+	      </div>
 	</div>
 </div>
 
@@ -142,7 +143,7 @@
   		</ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" ng-click="selecionaCriterio()" data-dismiss="modal">OK</button>
+        <button type="button" class="btn btn-default" ng-click="selecionaCriterio(key)" data-dismiss="modal">OK</button>
       </div>
     </div>
  

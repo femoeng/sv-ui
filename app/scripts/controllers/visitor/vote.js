@@ -15,7 +15,9 @@ angular.module('svUiApp')
 
     $scope.ready2Vote = false;
     $scope.confirmProjects = {};
-
+    $scope.currentPage = 0;
+    $scope.pageSize = 4;
+    
     $scope.projectos = [];
     $scope.projectosCriterio = [];
     $scope.criterios = [];
@@ -84,12 +86,12 @@ angular.module('svUiApp')
         console.log($scope.criterios);
     }
 
-    $scope.selecionaCriterio = function(criterioID) {
+    $scope.selecionaCriterio = function(criterioID, key) {
         $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
         $scope.projectosCriterio[$scope.selectedProjKey].hasCriterios = true;
         $scope.criterios = [];
         $scope.ready2Vote = true;
-        console.log($scope.projectosCriterio);
+        console.log(key);
     }
 
     $scope.votarProjecto = function(projecto, key) {
@@ -157,6 +159,21 @@ angular.module('svUiApp')
             if($scope.projectos[i].id == id) return $scope.projectos[i].titulo;
         }
     }
+    $scope.numberOfPages = function() {
+      return Math.ceil($scope.projectos.length/$scope.pageSize);;
+    }
+    $scope.prev = function(){
+        $scope.currentPage = $scope.currentPage - 1;
+    }
+    $scope.next = function(){
+        $scope.currentPage = $scope.currentPage + 1;
+    }
+    $scope.showNext = function(){
+       // console.log($scope.numberOfPages());
+       // console.log($scope.currentPage);
+        
+        return ($scope.numberOfPages() > 1) && ($scope.currentPage < $scope.numberOfPages() - 1);
+    }
 
     VisitorService.getProjectos(function(res) {
         $scope.projectos = res.projectos;
@@ -166,3 +183,11 @@ angular.module('svUiApp')
         console.log(err);
     });
   });
+
+angular.module('svUiApp')
+.filter('startFrom', function() {
+  return function(input, start) {
+    start = +start;
+    return input.slice(start);
+  }
+});
