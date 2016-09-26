@@ -27,6 +27,19 @@ module.exports = function (grunt) {
     // Project settings
     yeoman: appConfig,
 
+
+    surge: {
+      'Sistema de Votação': {
+        options: {
+          // The path or directory to your compiled project
+          project: 'dist/',
+          // The domain or subdomain to deploy to
+          domain: 'tiresome-boy.surge.sh'
+        }
+      }
+    },
+
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
@@ -273,9 +286,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
-          dest: '<%= yeoman.dist %>/images'
+          cwd: '<%= yeoman.app %>/images/',
+          src: '{,**/}*.{png,jpg,jpeg,gif}',
+          dest: '<%= yeoman.dist %>/images/'
         }]
       }
     },
@@ -284,9 +297,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/images',
+          cwd: '<%= yeoman.app %>/images/svgs',
           src: '{,*/}*.svg',
-          dest: '<%= yeoman.dist %>/images'
+          dest: '<%= yeoman.dist %>/images/svgs'
         }]
       }
     },
@@ -384,6 +397,8 @@ module.exports = function (grunt) {
     }
   });
 
+  // Load in the grunt-surge plugin
+  grunt.loadNpmTasks('grunt-surge'); 
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
     if (target === 'dist') {
@@ -428,7 +443,7 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    //'htmlmin'
   ]);
 
   grunt.registerTask('default', [
@@ -436,4 +451,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+  grunt.registerTask('deploy', ['surge']);
 };

@@ -8,12 +8,13 @@
  * Controller of the svUiApp
  */
 angular.module('svUiApp')
-  .controller('VisitorVoteCtrl', function ($scope, VisitorService) {
+  .controller('VisitorVoteCtrl', function ($scope, VisitorService, $location) {
     $scope.criteria1Selected = false;
     $scope.criteria2Selected = false;
     $scope.criteria3Selected = false;
 
     $scope.ready2Vote = false;
+    $scope.confirmProjects = {};
 
     $scope.projectos = [];
     $scope.projectosCriterio = [];
@@ -85,6 +86,7 @@ angular.module('svUiApp')
 
     $scope.selecionaCriterio = function(criterioID) {
         $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
+        $scope.projectosCriterio[$scope.selectedProjKey].hasCriterios = true;
         $scope.criterios = [];
         $scope.ready2Vote = true;
         console.log($scope.projectosCriterio);
@@ -116,6 +118,44 @@ angular.module('svUiApp')
             });
         }
         console.log($scope.projectosCriterio);
+    }
+
+    $scope.vote = function() {
+        console.log($scope.projectosCriterio);
+        var pst = {
+            votos: []
+        };
+
+        for(var i = 0; i < $scope.projectosCriterio.length; i++) {
+            console.log($scope.projectosCriterio[i].hasCriterios);
+            if($scope.projectosCriterio[i].hasCriterios) {
+                for(var k = 0; k < $scope.projectosCriterio[i].criterios.length; k++) {
+                    pst.votos.push({
+                        criterio: $scope.projectosCriterio[i].criterios[k].criterio.id,
+                        projecto: $scope.projectosCriterio[i].criterios[k].projecto
+                    });
+                }
+            }
+        }
+        $scope.confirmProjects = pst;
+        
+        console.log(JSON.stringify(pst));
+
+    }
+
+    $scope.confirmarVoto = function() {
+        VisitorService.vote($scope.confirmProjects, function(res) {
+            console.log(res);
+            $location.path("/auth/visitor");
+        }, function(err) {
+            console.log(err);
+        });
+    }
+
+    $scope.getProjectName = function(id) {
+        for (var i = 0; i < $scope.projectos.length; i++) {
+            if($scope.projectos[i].id == id) return $scope.projectos[i].titulo;
+        }
     }
 
     VisitorService.getProjectos(function(res) {

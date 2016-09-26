@@ -13,9 +13,12 @@ angular.module('svUiApp')
   var configuracoes = { 
   	headers: {'Content-Type':'application/json'}
   };
-  this.vote = function(){
-  	
+  this.vote = function(voto, sucesso, erro){
+  	var codigo = sessionStorage['sv.visitor.code'];
+    $http.defaults.headers.common['Authorization'] = 'Token '+codigo;
+    $http.post(apiUrl+'/votos', voto, configuracoes).success(sucesso).error(erro);  
   }
+
   this.getProjectos = function(sucesso,erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
