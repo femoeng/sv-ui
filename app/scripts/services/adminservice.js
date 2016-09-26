@@ -34,17 +34,23 @@ angular.module('svUiApp')
     $http.put(apiUrl+'/departamentos/'+departamento.id, post, configuracoes).success(sucesso).error(erro);
   }
 
+  this.getCursos = function(sucesso,erro){
+    var token = localStorage['sv.token'];
+    $http.defaults.headers.common['Authorization'] = 'Token '+token;
+    $http.get(apiUrl+'/departamentos/cursos').success(sucesso).error(erro);  
+  }
+
   this.createCurso = function(curso, sucesso, erro){
     var token = localStorage['sv.token'];
     var post = JSON.stringify(curso);
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
-    $http.post(apiUrl+'/cursos', post, configuracoes).success(sucesso).error(erro);
+    $http.post(apiUrl+'/departamentos/cursos', post, configuracoes).success(sucesso).error(erro);
   }
 
   this.removeCurso = function(id, sucesso, erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
-    $http.delete(apiUrl+'/cursos'+id).success(sucesso).error(erro);  
+    $http.delete(apiUrl+'/departamentos/cursos'+id).success(sucesso).error(erro);  
   }
 
   this.updateCurso = function(curso, sucesso, erro){
@@ -54,7 +60,7 @@ angular.module('svUiApp')
       nome: curso.nome
     }
     post = JSON.stringify(post);
-    $http.put(apiUrl+'/cursos/'+curso.id, post, configuracoes).success(sucesso).error(erro);
+    $http.put(apiUrl+'/departamentos/cursos/'+curso.id, post, configuracoes).success(sucesso).error(erro);
   }
   this.getDepartamentos = function(sucesso,erro){
     var token = localStorage['sv.token'];
@@ -105,5 +111,16 @@ angular.module('svUiApp')
     $http.get(apiUrl+'/projectos').success(sucesso).error(erro);  
   }
 
+  this.createProject= function(project, sucesso, erro){
+    var token = localStorage['sv.token'];
+    var post = JSON.stringify(project);
+    $http.defaults.headers.common['Authorization'] = 'Token '+token;
+    $http.post(apiUrl+'/projectos', post, configuracoes).success(sucesso).error(erro);
+  }
 
+    this.removeProject = function(id, sucesso, erro){
+    var token = localStorage['sv.token'];
+    $http.defaults.headers.common['Authorization'] = 'Token '+token;
+    $http.delete(apiUrl+'/projectos/'+id).success(sucesso).error(erro);  
+  }
 });
