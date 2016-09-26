@@ -21,7 +21,7 @@ angular.module('svUiApp')
     	AuthService.login(credenciais,function(res){
     		var token = res.token;
             localStorage['sv.token'] = token;
-            $location.path('/admin/projects');
+            $location.path('/admin/hr/visitors');
             cfpLoadingBar.complete();
     	}, function(err){
     		console.log(err);

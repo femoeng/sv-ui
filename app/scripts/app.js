@@ -22,8 +22,8 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/inicio.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/auth/login.html',
+        controller: 'LoginCtrl'
       })
       .when('/auth/logout', {
         templateUrl: 'views/logout.html',
