@@ -184,6 +184,7 @@ angular.module('svUiApp')
     }
     $scope.redirecionar = function(){
         $location.path("/auth/visitor");
+        
     }
     $scope.getProjectName = function(id) {
         for (var i = 0; i < $scope.projectos.length; i++) {
