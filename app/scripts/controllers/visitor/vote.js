@@ -12,7 +12,7 @@ angular.module('svUiApp')
     $scope.criteria1Selected = false;
     $scope.criteria2Selected = false;
     $scope.criteria3Selected = false;
-
+    $scope.mensagemFinal = "";
     var numCriterios = 0;
 
     $scope.ready2Vote = false;
@@ -111,7 +111,6 @@ angular.module('svUiApp')
                        
                 } else {
                     $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
-                    
                 }
                 $scope.projectosCriterio[$scope.selectedProjKey].hasCriterios = true;
                 $scope.criterios = [];
@@ -176,14 +175,16 @@ angular.module('svUiApp')
     }
 
     $scope.confirmarVoto = function() {
-        VisitorService.vote($scope.confirmProjects, function(res) {
-            console.log(res);
-            $location.path("/auth/visitor");
-        }, function(err) {
+        VisitorService.vote($scope.confirmProjects, function(res, status) {
+            $scope.mensagemFinal = res.mensagem;
+        }, function(err, status) {
+            $scope.mensagemFinal = err.erros[0];
             console.log(err);
         });
     }
-
+    $scope.redirecionar = function(){
+        $location.path("/auth/visitor");
+    }
     $scope.getProjectName = function(id) {
         for (var i = 0; i < $scope.projectos.length; i++) {
             if($scope.projectos[i].id == id) return $scope.projectos[i].titulo;
