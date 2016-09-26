@@ -13,6 +13,8 @@ angular.module('svUiApp')
     $scope.criteria2Selected = false;
     $scope.criteria3Selected = false;
 
+    var numCriterios = 0;
+
     $scope.ready2Vote = false;
     $scope.confirmProjects = {};
     $scope.currentPage = 0;
@@ -87,10 +89,38 @@ angular.module('svUiApp')
     }
 
     $scope.selecionaCriterio = function(criterioID, key) {
-        $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
-        $scope.projectosCriterio[$scope.selectedProjKey].hasCriterios = true;
-        $scope.criterios = [];
-        $scope.ready2Vote = true;
+        if (numCriterios < 3){
+            if ($scope.currentPage == 0){
+                if($scope.projectosCriterio[$scope.selectedProjKey].hasCriterios) {
+                    $scope.projectosCriterio[$scope.selectedProjKey].criterios.push($scope.criterios[0]); 
+                       
+                } else {
+                    $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
+                    
+                }
+                numCriterios = numCriterios+1;
+                $scope.projectosCriterio[$scope.selectedProjKey].hasCriterios = true;
+                $scope.criterios = [];
+                $scope.ready2Vote = true;
+                //console.log($scope.projectosCriterio[$scope.selectedProjKey].criterios);
+            }
+            else{
+                $scope.selectedProjKey = $scope.currentPage*$scope.pageSize + $scope.selectedProjKey;
+                if($scope.projectosCriterio[$scope.selectedProjKey].hasCriterios) {
+                    $scope.projectosCriterio[$scope.selectedProjKey].criterios.push($scope.criterios[0]); 
+                       
+                } else {
+                    $scope.projectosCriterio[$scope.selectedProjKey].criterios = $scope.criterios;
+                    
+                }
+                $scope.projectosCriterio[$scope.selectedProjKey].hasCriterios = true;
+                $scope.criterios = [];
+                $scope.ready2Vote = true;
+                //console.log($scope.selectedProjKey);
+                numCriterios = numCriterios+1;
+            }
+        }
+        
         console.log(key);
     }
 
@@ -167,6 +197,7 @@ angular.module('svUiApp')
     }
     $scope.next = function(){
         $scope.currentPage = $scope.currentPage + 1;
+        console.log($scope.projectos);
     }
     $scope.showNext = function(){
        // console.log($scope.numberOfPages());
@@ -187,7 +218,7 @@ angular.module('svUiApp')
 angular.module('svUiApp')
 .filter('startFrom', function() {
   return function(input, start) {
-    start = +start;
-    return input.slice(start);
+    //start = +start;
+    //return input.slice(start);
   }
 });
