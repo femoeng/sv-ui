@@ -61,7 +61,13 @@
 
 
                 <div class="col-sm-10">
-                  
+                  <span style="color: #777; font-size: 26px;">Forma1: Bolo</span>
+                  <hr/>
+                  <canvas id="chart" style="width: 500px !important; height: 500px !important;"></canvas>
+                  <br/>
+                  <span style="color: #777; font-size: 26px;">Forma2: Barras</span>
+                  <hr/>
+                  <canvas id="chart2" style="width: 500px !important; height: 500px !important;"></canvas>
                 </div>
             </div>
 
@@ -69,3 +75,42 @@
         </div>
       </div>
     </div>
+
+    <script type="text/javascript">
+    Chart.defaults.global.defaultFontSize = 22;
+    var ct = $("#chart");
+    var ct2 = $("#chart2");
+    var newChart = new Chart(ct, {
+      type: 'pie',
+      data: {
+        labels: ["Renamo", "Frelimo", "MDN"],
+        datasets: [{
+          label: 'Votos',
+          data: [12, 19, 3],
+          backgroundColor: ['red', 'blue', 'pink']  
+        }]  
+      },
+    });
+
+    var newChart2 = new Chart(ct2, {
+      type: 'bar',
+      data: {
+        labels: ["Renamo", "Frelimo", "MDN"],
+        datasets: [{
+          label: 'Votos',
+          data: [12, 19, 3],
+          backgroundColor: ['red', 'blue', 'pink']  
+        }]  
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+
+    });
+  </script>
