@@ -14,10 +14,10 @@ angular.module('svUiApp')
   	headers: {'Content-Type':'application/json'}
   };
 
-  this.getVotos = function(sucesso,erro){
+  this.getVotos = function(query,sucesso,erro){
     var token = localStorage['sv.token'];
     $http.defaults.headers.common['Authorization'] = 'Token '+token;
-    $http.get(apiUrl+'/votos').success(sucesso).error(erro);  
+    $http.get(apiUrl+'/votos'+query).success(sucesso).error(erro);  
   }
 
   });

@@ -41,8 +41,13 @@
           </div>
           <!-- tabela -->
           <div id = "b_top_div">
-            <input id = "b_table" type="submit" name = "" value = "Tabela" onclick = "hideshow();" disabled/>
-            <input id = "b_grid" type="submit" name = "" value = "Grid" onclick = "hideshow();" />
+
+            <select class="form-control center" style="width: 30% !important;" >
+              <option ng-click = "updateBars('',criterio.todos)" ng-model = "criterio.todos" >todos</option>
+              <option ng-click = "updateBars('?criterio',criterio.mais_criativo)" ng-model = "criterio.mais_criativo" >mais criativo</option>
+              <option ng-click = "updateBars('?criterio',criterio.melhor_apresentacao)" ng-model = "criterio.melhor_apresentacao" >melhor apresentacao</option>
+              <option ng-click = "updateBars('?criterio',criterio.maior_impacto_social)" ng-model = "criterio.maior_impacto_social" >maior impacto social</option>
+            </select>
           </div>
 
           <div class="table-responsive">
